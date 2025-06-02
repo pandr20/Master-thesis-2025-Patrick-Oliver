@@ -1,0 +1,89 @@
+{
+  "timestamp": "20250531_213139",
+  "model": "o4-mini",
+  "relevance_threshold": 0.3,
+  "summary": {
+    "total_questions": 10,
+    "average_documents_naive": 2.8,
+    "average_documents_advanced": 10.1,
+    "average_improvement": 7.3,
+    "total_naive_docs": 28,
+    "total_advanced_docs": 101,
+    "questions_with_improvement": 10,
+    "improvement_rate": 100.0,
+    "total_expanded_queries": 40,
+    "average_expanded_queries": 4.0
+  },
+  "metrics": [
+    {
+      "question": "Hvordan fungerer jeres AI-coaching og hvad lærer jeg konkret?",
+      "naive_docs": 1,
+      "advanced_docs": 4,
+      "improvement": 3,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Kan I hjælpe mig med at automatisere mine arbejdsgange med AI og i så fald hvordan?",
+      "naive_docs": 0,
+      "advanced_docs": 17,
+      "improvement": 17,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Hvilke AI-tools anbefaler I til contentproduktion og kundeservice og kan jeg lære dem via jer?",
+      "naive_docs": 12,
+      "advanced_docs": 17,
+      "improvement": 5,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Hvordan adskiller jeres AI-løsninger sig fra andre bureauers?",
+      "naive_docs": 0,
+      "advanced_docs": 10,
+      "improvement": 10,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Er det muligt at få skræddersyet AI-setup eller undervisning kun til min branche eller arbejdsproces?",
+      "naive_docs": 3,
+      "advanced_docs": 7,
+      "improvement": 4,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Hvilket annonceringsbudget skal jeg minimum regne med for at få resultater?",
+      "naive_docs": 0,
+      "advanced_docs": 12,
+      "improvement": 12,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Hvordan foregår et typisk samarbejde med jer fra start til slut?",
+      "naive_docs": 0,
+      "advanced_docs": 11,
+      "improvement": 11,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Kan I hjælpe med alt hvis jeg ikke har nogen marketingopsætning i forvejen?",
+      "naive_docs": 11,
+      "advanced_docs": 14,
+      "improvement": 3,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Hvad sker der hvis jeg ikke er tilfreds med jeres arbejde?",
+      "naive_docs": 0,
+      "advanced_docs": 3,
+      "improvement": 3,
+      "expanded_queries": 4
+    },
+    {
+      "question": "Hvilke resultater har I tidligere skabt og hvad kan jeg realistisk forvente?",
+      "naive_docs": 1,
+      "advanced_docs": 6,
+      "improvement": 5,
+      "expanded_queries": 4
+    }
+  ]
+}

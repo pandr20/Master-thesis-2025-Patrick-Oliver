@@ -1,0 +1,82 @@
+~H"""
+<CustomerSupportPhoenixWeb.CoreComponents.header class="mb-4">
+  <%= @session.title || "New Chat" %>
+  <:subtitle>Conversation ID: <%= @session.id %></:subtitle>
+  <:actions>
+    <CustomerSupportPhoenixWeb.CoreComponents.button phx-click="start_edit_title" :if={!@editing_title?}>
+      <CustomerSupportPhoenixWeb.CoreComponents.icon name="hero-pencil" class="h-5 w-5" /> Edit Title
+    </CustomerSupportPhoenixWeb.CoreComponents.button>
+    <.link href={~p"/chat"} class="ml-2"><CustomerSupportPhoenixWeb.CoreComponents.button>Back to Chats</CustomerSupportPhoenixWeb.CoreComponents.button></.link>
+  </:actions>
+</CustomerSupportPhoenixWeb.CoreComponents.header>
+
+<div :if={@editing_title?} class="mb-4 p-4 border rounded bg-gray-700 border-gray-600">
+  <.form for={@title_form} phx-change="validate_title" phx-submit="save_title">
+    <CustomerSupportPhoenixWeb.CoreComponents.input field={@title_form[:title]} label="Chat Title" />
+    <:actions>
+      <CustomerSupportPhoenixWeb.CoreComponents.button type="submit" phx-disable-with="Saving..." variant="primary">Save Title</CustomerSupportPhoenixWeb.CoreComponents.button>
+      <CustomerSupportPhoenixWeb.CoreComponents.button type="button" phx-click="cancel_edit_title">Cancel</CustomerSupportPhoenixWeb.CoreComponents.button>
+    </:actions>
+  </.form>
+</div>
+
+<div id="chat-container" class="flex flex-col h-[70vh] border border-gray-700 rounded overflow-y-auto mb-4 p-4 space-y-4 bg-gray-800">
+  <div :for={message <- @messages} id={"message-#{message.id}"}>
+    <div class={
+      ["p-3 rounded-lg max-w-[70%]",
+      message.sender == "user" && "bg-blue-500 text-white ml-auto",
+      message.sender == "ai" && "bg-gray-700 text-gray-200 mr-auto"]}
+    >
+      <p class="whitespace-pre-wrap"><%= message.message %></p>
+      <div :if={message.sender == "ai"} class="mt-2 pt-2 border-t border-gray-600 flex justify-end space-x-2">
+        <CustomerSupportPhoenixWeb.CoreComponents.button
+          type="button"
+          phx-click="submit_feedback"
+          phx-value-message-id={message.id}
+          phx-value-rating="positive"
+          disabled={!!message.feedback}
+          class={
+            ["btn btn-sm normal-case font-normal",
+             message.feedback && message.feedback.rating == "positive" && "btn-success text-white",
+             message.feedback && message.feedback.rating != "positive" && "btn-disabled opacity-50",
+             !message.feedback && "bg-gray-600 hover:bg-gray-500 border-gray-600"]
+          }
+        >
+          <CustomerSupportPhoenixWeb.CoreComponents.icon name="hero-hand-thumb-up" class="h-4 w-4 inline mr-1" /> Positive
+        </CustomerSupportPhoenixWeb.CoreComponents.button>
+        <CustomerSupportPhoenixWeb.CoreComponents.button
+          type="button"
+          phx-click="submit_feedback"
+          phx-value-message-id={message.id}
+          phx-value-rating="negative"
+          disabled={!!message.feedback}
+          class={
+            ["btn btn-sm normal-case font-normal",
+             message.feedback && message.feedback.rating == "negative" && "btn-error text-white",
+             message.feedback && message.feedback.rating != "negative" && "btn-disabled opacity-50",
+             !message.feedback && "bg-gray-600 hover:bg-gray-500 border-gray-600"]
+          }
+        >
+           <CustomerSupportPhoenixWeb.CoreComponents.icon name="hero-hand-thumb-down" class="h-4 w-4 inline mr-1" /> Negative
+        </CustomerSupportPhoenixWeb.CoreComponents.button>
+      </div>
+    </div>
+  </div>
+
+  <div :if={@sending_message} class="flex justify-center items-center p-4 text-gray-400"><CustomerSupportPhoenixWeb.CoreComponents.spinner /> Thinking...</div>
+
+</div>
+
+<.form
+  for={@message_form}
+  id="message-form"
+  phx-submit="send_message"
+  phx-change="validate_message"
+  class="flex items-center space-x-2"
+>
+  <CustomerSupportPhoenixWeb.CoreComponents.input field={@message_form[:message]} placeholder="Spørger CJ Complex Support..." autocomplete="off" phx-debounce="blur" class="flex-grow" />
+  <CustomerSupportPhoenixWeb.CoreComponents.button type="submit" phx-disable-with="Sending..." variant="primary" disabled={@sending_message}>
+    <CustomerSupportPhoenixWeb.CoreComponents.icon name="hero-paper-airplane" class="h-5 w-5" /> Send
+  </CustomerSupportPhoenixWeb.CoreComponents.button>
+</.form>
+""" 

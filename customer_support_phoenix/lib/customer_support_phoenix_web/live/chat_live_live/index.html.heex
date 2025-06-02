@@ -1,0 +1,39 @@
+<CustomerSupportPhoenixWeb.CoreComponents.header class="mb-6">
+  My Chats
+  <:actions>
+    <CustomerSupportPhoenixWeb.CoreComponents.button phx-click="new_chat_session" phx-disable-with="Creating..." variant="primary">
+      <CustomerSupportPhoenixWeb.CoreComponents.icon name="hero-plus" class="h-5 w-5" /> New Chat
+    </CustomerSupportPhoenixWeb.CoreComponents.button>
+  </:actions>
+</CustomerSupportPhoenixWeb.CoreComponents.header>
+
+<div class="space-y-4">
+  <div
+    :for={{dom_id, chat_session} <- @streams.chat_sessions}
+    id={dom_id}
+    class="bg-gray-800 text-white p-4 rounded-lg shadow flex justify-between items-center"
+  >
+    <div>
+      <h3 class="font-semibold text-lg">{chat_session.title || "Chat ##{chat_session.id}"}</h3>
+      <p class="text-sm text-gray-400">
+        Started: {DateTime.shift_zone!(chat_session.inserted_at, "Etc/UTC") |> Calendar.strftime("%d/%m/%Y, %H:%M:%S")}
+      </p>
+    </div>
+    <div class="flex space-x-2">
+      <.link navigate={~p"/chat/#{chat_session.id}"} class="p-2 rounded hover:bg-gray-700">
+        <CustomerSupportPhoenixWeb.CoreComponents.icon name="hero-eye" class="h-5 w-5 text-gray-300" />
+      </.link>
+      <.link
+        phx-click={js_delete_session(dom_id, chat_session)}
+        data-confirm="Are you sure you want to delete this chat session?"
+        class="p-2 rounded hover:bg-red-700"
+      >
+        <CustomerSupportPhoenixWeb.CoreComponents.icon name="hero-trash" class="h-5 w-5 text-red-400" />
+      </.link>
+    </div>
+  </div>
+
+  <div :if={@streams.chat_sessions == %{}} class="text-center text-gray-500 py-8">
+    No chat sessions yet. Click "New Chat" to start!
+  </div>
+</div> 
