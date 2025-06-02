@@ -8,4 +8,12 @@ The metadata regarding the final custom GPT model can be found in FinalCustomGPT
 The code required to generate the Q and A pairs to finetune the GPT can be found in FineTunedGPTCode.
 # Rails implentation.
 The implementation of the GUI in Rails can be found in RubyOnRailsImplementation.
+# Advanced RAG
+The implementation of advanced RAG can be found in advanced-rag
 
+# Laravel Implementation
+The implementation of laravel can be found in customer_support_laravel
+# Phoenix Implementation
+The implementation of phoenix can be found within customer_support_phoenix
+# Naive RAG
+Naive RAG implementation can be found in rag
